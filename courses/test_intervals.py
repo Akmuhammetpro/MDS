@@ -1,6 +1,6 @@
 from hypothesis import given
 from hypothesis import strategies as st
-from intervals import merge_intervals
+from courses.intervals import merge_intervals
 
 interval = st.tuples(
     st.integers(min_value=-100, max_value=100),

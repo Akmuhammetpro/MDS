@@ -4,28 +4,20 @@ from django.db.models import Q
 from .models import Course, Category
 from .forms import CourseForm
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from .models import Course
 
 def category_courses(request, pk):
-    # Ищем категорию по ID
     category = get_object_or_404(Category, pk=pk)
-    # Находим все курсы, которые относятся к этой категории
     courses = Course.objects.filter(category=category).order_by('-year', 'title')
-    # Забираем все категории для выпадающего меню в шаблоне
     categories = Category.objects.all().order_by('name')
     
-    # Мы можем использовать тот же самый шаблон course_list.html!
     return render(request, 'courses/course_list.html', {
         'courses': courses,
         'categories': categories,
     })
 
 def api_course_detail(request, pk):
-    # Пытаемся найти курс по ID (pk). Если его нет, Django сам вернет ошибку 404.
     course = get_object_or_404(Course, pk=pk)
     
-    # Формируем словарь (dictionary) с данными курса
     data = {
         'id': course.pk,
         'title': course.title,
@@ -34,7 +26,6 @@ def api_course_detail(request, pk):
         'category': course.category.name,
     }
     
-    # Возвращаем данные в формате JSON
     return JsonResponse(data)
 
 def api_courses(request):
