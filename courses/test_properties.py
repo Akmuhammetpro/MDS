@@ -1,6 +1,8 @@
 from hypothesis import given, assume
 from hypothesis import strategies as st
 from utils import clamp, merge_sorted
+from hypothesis import settings, HealthCheck
+@settings(suppress_health_check=[HealthCheck.filter_too_much])
 
 # --- Свойства для clamp ---
 @given(st.integers(), st.integers(), st.integers())

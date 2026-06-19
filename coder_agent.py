@@ -1,4 +1,5 @@
-import json, subprocess
+import json
+import subprocess
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
@@ -42,7 +43,8 @@ messages = [{"role": "system", "content": "You are a coding agent. Always verify
 print("Coding Agent: I can help you read and run files. What should I do?")
 while True:
     user_input = input("\nYou: ")
-    if user_input.lower() == 'exit': break
+    if user_input.lower() == 'exit':
+            break
         
     messages.append({"role": "user", "content": user_input})
     

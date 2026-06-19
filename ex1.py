@@ -21,8 +21,10 @@ def parse_expr(tokens, pos):
     while pos < len(tokens) and tokens[pos] in ('+', '-'):
         op = tokens[pos]
         right, pos = parse_term(tokens, pos + 1)
-        if op == '+': left += right
-        else: left -= right
+        if op == '+':
+          left += right
+        else:
+         left -= right
     return left, pos
 
 def evaluate(expr):

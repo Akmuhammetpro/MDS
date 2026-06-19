@@ -39,7 +39,8 @@ print("Task Agent: Ready to schedule! (e.g., 'Add a task for paying taxes by May
 
 while True:
     user_input = input("\nYou: ")
-    if user_input.lower() == 'exit': break
+    if user_input.lower() == 'exit':
+        break
     
     messages.append({"role": "user", "content": user_input})
     response = client.chat.completions.create(model="mistral", messages=messages, tools=tools)
