@@ -1,0 +1,15 @@
+{% extends "courses/base.html" %}
+{% block content %}
+<h1>{{ course.title }} ({{ course.year }})</h1>
+<p>Instructor: {{ course.instructor }}</p>
+<p>Category: {{ course.category.name }}</p>
+<p>Semester: {{ course.semester }}</p>
+<p>{{ course.description }}</p>
+<p>Credits: {{ course.credits }}</p>
+
+{% if user.is_authenticated %}
+
+    <a href="{% url 'course_edit' course.pk %}">Edit</a> | 
+    <a href="{% url 'course_delete' course.pk %}">Delete</a>
+{% endif %}
+{% endblock %}
