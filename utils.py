@@ -25,3 +25,14 @@ def parse_pair(s):
     if len(parts) != 2:
         raise ValueError(f"expected 'a:b', got '{s}'")
     return int(parts[0]), int(parts[1])
+
+def unique_sorted(lst):
+    result = sorted(lst)
+    i = 0
+    while i < len(result) - 1:
+        if result[i] == result[i + 1]:
+            result.pop(i)
+            # Если удалили, индекс НЕ увеличиваем!
+        else:
+            i += 1 # Увеличиваем только если числа разные
+    return result
